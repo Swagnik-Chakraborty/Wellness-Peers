@@ -14,11 +14,13 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TableModule } from 'primeng/table';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { PatientComponent } from './components/patient/patient.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    PatientComponent
   ],
   imports: [
     BrowserModule,
