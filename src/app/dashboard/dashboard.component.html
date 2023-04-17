@@ -5,7 +5,7 @@
         <h2>Dashboard</h2>
 
         <div style="display: flex; justify-content: space-between;" >
-            
+
             <div #myPieChart style="width: 570px; height: 322px; background: white; border-radius: 24px;"></div>
 
 
@@ -13,7 +13,7 @@
                 <h3 style="margin-top: 10px; padding-left: 10px; font-weight: 500;">List of Common Conditions :</h3>
             </div>
         </div>
-        
+
         <div style="margin-top: 12px;">
             <div style="display: flex; justify-content: space-between;">
                 <div class="card-cont" style="width: 240px; height: 150px; background-color: white;border-radius: 25px;">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="table table-striped" style="margin-top: 30px; background: white; padding: 5px 15px; border-radius: 24px;">
-            <p-table [value]="product" [tableStyle]="{'max-width': '60rem'}">
+            <p-table [value]="topTenPatientData" [tableStyle]="{'max-width': '60rem'}">
                 <ng-template pTemplate="header">
                     <tr style="height: 60px;">
                         <th pSortableColumn="code" style="width:20%">Code <p-sortIcon field="code"></p-sortIcon></th>
@@ -46,19 +46,18 @@
                         <th pSortableColumn="quantity" style="width:20%">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
                         <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon></th>
                     </tr>
-                    
                 </ng-template>
-                <ng-template pTemplate="body" let-prod >
-                    <tr style="border-top: 1px solid; height: 60px;">
-                        <td>{{prod.category}}</td>
-                        <td>{{prod.brand}}</td>
-                        <td>{{prod.qty}}</td>
-                        <td>{{prod.desc}}</td>
-                        <td>{{prod.price}}</td>
+                <ng-template pTemplate="body" let-patient>
+                    <tr style="border-top: 1px solid; height: 60px;" >
+                        <td>{{patient.SUBJECT_ID}}</td>
+                        <td>{{patient.SUBJECT_ID}}</td>
+                        <td>{{patient.SUBJECT_ID}}</td>
+                        <td>{{patient.SUBJECT_ID}}</td>
+                        <td>{{patient.SUBJECT_ID}}</td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-      
+
     </div>
 </div>
