@@ -15,12 +15,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TableModule } from 'primeng/table';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { PatientComponent } from './components/patient/patient.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    PatientComponent
+    PatientComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

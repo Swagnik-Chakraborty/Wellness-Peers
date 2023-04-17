@@ -1,32 +1,5 @@
 <div style="display: flex;">
-    <div class="sidenav" style="width: 20%; height: 600px; padding: 2px 11px;">
-        <section>
-            <h3 style="margin-top: 20px; margin-left: 16px;color: orange;font-size: 19px;">Wellness Peers</h3>
-
-            <hr style="border: none; height: 3px;margin-top: 31px ;background: #82b0d9;">
-
-            <div style="padding-left:10px; padding-top:13px">
-                <li class="dashboard-item">
-                    <h3  class="item-style"> <mat-icon class="icon-style">dashboard</mat-icon>&nbsp; Dashboard</h3>
-                </li>
-                <li class="dashboard-item">
-                    <h3 class="item-style" > <mat-icon class="icon-style">perm_identity</mat-icon>&nbsp; Patients</h3>
-                </li>
-                <li class="dashboard-item">
-                    <h3 class="item-style" > <mat-icon class="icon-style">trending_up</mat-icon>&nbsp; Activity</h3>
-                </li>
-
-                <hr style="border: none; height: 3px;margin-top: 177px ;background: #82b0d9;">
-                <li class="dashboard-item">
-                    <h3 class="item-style" > <mat-icon class="icon-style">logout</mat-icon>&nbsp; Logout</h3>
-                </li>
-                
-                
-                
-            </div>
-            
-        </section>
-    </div>
+    <app-sidenav></app-sidenav>
 
     <div style="padding: 20px 50px;background-color: #f6f6f6; position: absolute; left:22% ; width: 70%;">
         <h2>Dashboard</h2>
@@ -63,7 +36,7 @@
             </div>
         </div>
 
-        <!-- <div class="table table-striped" style="margin-top: 30px; background: white; padding: 5px 15px; border-radius: 24px;">
+        <div class="table table-striped" style="margin-top: 30px; background: white; padding: 5px 15px; border-radius: 24px;">
             <p-table [value]="product" [tableStyle]="{'max-width': '60rem'}">
                 <ng-template pTemplate="header">
                     <tr style="height: 60px;">
@@ -85,7 +58,7 @@
                     </tr>
                 </ng-template>
             </p-table>
-        </div> -->
+        </div>
       
     </div>
 </div>

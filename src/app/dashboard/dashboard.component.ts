@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import * as echarts from 'echarts';
 
 @Component({
@@ -13,7 +14,7 @@ export class DashboardComponent {
   public chart: any;
   product = [];
 
-  constructor(){}
+  constructor(private router:Router){}
   ngOnInit(){
     // this.createChart();
    
@@ -62,4 +63,6 @@ export class DashboardComponent {
   // },1000)
   
   }
+
+  
 }
