@@ -16,4 +16,8 @@ export class SidenavComponent {
   navigatePatients(){
     this.router.navigateByUrl('/patients');
   }
+  navigateToSinglePatientPage()
+  {
+    this.router.navigateByUrl('/singlePatient');
+  }
 }

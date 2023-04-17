@@ -1,4 +1,4 @@
-<div class="sidenav" style="width: 20%; height: 600px; padding: 2px 11px;">
+<div class="sidenav" style="width: 20%; height: 100vw; padding: 2px 11px;">
     <section>
         <h3 style="margin-top: 20px; margin-left: 16px;color: orange;font-size: 19px;">Wellness Peers</h3>
 
@@ -11,7 +11,7 @@
             <li class="dashboard-item" (click)="navigatePatients()">
                 <h3 class="item-style" > <mat-icon class="icon-style">perm_identity</mat-icon>&nbsp; Patients</h3>
             </li>
-            <li class="dashboard-item">
+            <li class="dashboard-item" (click)="navigateToSinglePatientPage()">
                 <h3 class="item-style" > <mat-icon class="icon-style">trending_up</mat-icon>&nbsp; Activity</h3>
             </li>
 
