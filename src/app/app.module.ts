@@ -22,7 +22,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AppComponent,
     DashboardComponent,
     PatientComponent,
-    SidenavComponent
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
