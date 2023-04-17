@@ -1,0 +1,35 @@
+.sidenav{
+    background : url("https://refrigerationcompressorparts.net/wp-content/uploads/2019/03/solution-sidebar-background1.jpg");
+    position: fixed;
+
+    .icon-style{
+        position: relative;
+        top: 6px;
+    }
+
+    .dashboard-item{
+        list-style: none;
+        height: 62px;
+        padding: 11px 12px;
+        color: #82b0d9;
+    }
+    .dashboard-item:hover{
+        background-color: #3559bd;
+        border-radius: 19px;
+        color: #e4dddd;
+        cursor: pointer;
+    }
+}
+
+.icon-cont{
+    width: 33px;
+    height: 33px;
+    background-color: #b8deff;
+    color: #6969d6;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    left: 198px;
+    bottom: 29px;
+    cursor: pointer;
+}
