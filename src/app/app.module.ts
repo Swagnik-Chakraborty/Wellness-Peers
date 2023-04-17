@@ -16,13 +16,17 @@ import { TableModule } from 'primeng/table';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { PatientComponent } from './components/patient/patient.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { SinglePatientDetailsComponent } from './components/single-patient-details/single-patient-details.component';
+// import { GaugeChartModule } from "angular-gauge-chart";
 
+ 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PatientComponent,
-    SidenavComponent
+    SidenavComponent,
+    SinglePatientDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatRadioModule,
     MatSnackBarModule,
     NgxEchartsModule,
-    TableModule
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
