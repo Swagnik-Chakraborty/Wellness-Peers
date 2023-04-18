@@ -5,7 +5,7 @@
         <h2>Dashboard</h2>
 
         <div style="display: flex; justify-content: space-between;" >
-            
+
             <div #myPieChart style="width: 46%; height: 320px; background: white; border-radius: 24px;"></div>
 
 
@@ -17,26 +17,26 @@
             </div> -->
         </div>
 
-        
-        
+
+
         <div style="margin-top: 12px;">
             <div style="display: flex; justify-content: space-between;">
                 <div class="card-cont" style="width: 240px; height: 150px; background-color: white;border-radius: 25px;">
                     <h4 style="padding-top: 14px; padding-left: 22px; font-weight: 600;">Patients</h4>
                     <div class="icon-cont"><mat-icon class="icon-style"  style="position: relative;top: 3px; left: 4px;">perm_identity</mat-icon></div>
-                    <h2 style="padding-left: 22px;">50,000</h2>
+                    <h2 style="padding-left: 22px;">5,000</h2>
                 </div>
 
                 <div class="card-cont" style="width: 240px; height: 150px; background-color: white;border-radius: 25px;">
                     <h4 style="padding-top: 14px; padding-left: 22px; font-weight: 600;">Reports</h4>
                     <div class="icon-cont"><mat-icon class="icon-style" style="position: relative;top: 3px; left: 4px;">description</mat-icon></div>
-                    <h2 style="padding-left: 22px;">60,000</h2>
+                    <h2 style="padding-left: 22px;">5,000</h2>
                 </div>
 
                 <div class="card-cont" style="width: 240px; height: 150px; background-color: white;border-radius: 25px;">
                     <h4 style="padding-top: 14px; padding-left: 22px; font-weight: 600;">Reports</h4>
                     <div class="icon-cont"><mat-icon class="icon-style" style="position: relative;top: 3px; left: 4px;">description</mat-icon></div>
-                    <h2 style="padding-left: 22px;">60,000</h2>
+                    <h2 style="padding-left: 22px;">5,000</h2>
                 </div>
             </div>
         </div>
@@ -45,20 +45,20 @@
             <p-table [value]="topTenPatientData" [tableStyle]="{'max-width': '60rem'}">
                 <ng-template pTemplate="header">
                     <tr style="height: 60px;">
-                        <th pSortableColumn="code" style="width:20%">Code <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name" style="width:20%">Name <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="category" style="width:20%">Category <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="quantity" style="width:20%">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
-                        <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="code" style="width:20%">Subject Id <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name" style="width:20%">Hadm Id <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="category" style="width:20%">Risk Group <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="quantity" style="width:20%">Age <p-sortIcon field="quantity"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width:20%">Gender <p-sortIcon field="price"></p-sortIcon></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-patient>
                     <tr style="border-top: 1px solid; height: 60px;" >
                         <td>{{patient.SUBJECT_ID}}</td>
-                        <td>{{patient.SUBJECT_ID}}</td>
-                        <td>{{patient.SUBJECT_ID}}</td>
-                        <td>{{patient.SUBJECT_ID}}</td>
-                        <td>{{patient.SUBJECT_ID}}</td>
+                        <td>{{patient.HADM_ID}}</td>
+                        <td>{{patient.Riskgroup}}</td>
+                        <td>{{patient.AGE}}</td>
+                        <td>{{patient.GENDER}}</td>
                     </tr>
                 </ng-template>
             </p-table>
