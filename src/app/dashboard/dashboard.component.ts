@@ -130,4 +130,8 @@ export class DashboardComponent {
     })
     
   }
+
+  patientList(){
+    this.router.navigateByUrl('/patients');
+  }
 }
