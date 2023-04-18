@@ -10,11 +10,11 @@
             </button>
         </mat-toolbar>
         <div class="content">
-            <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="admissionTypeCount">
+            <div fxLayout="row wrap" fxLayoutGap="16px grid">
                 <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
                     <mat-card class="mat-elevation-z8 emergency">
                         <mat-card-header>
-                            <mat-card-title>{{admissionTypeCount[0].EMERGENCY}}</mat-card-title>
+                            <mat-card-title>12</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
@@ -26,7 +26,7 @@
                 <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%">
                     <mat-card class="mat-elevation-z8 elective">
                         <mat-card-header>
-                            <mat-card-title>{{admissionTypeCount[0].ELECTIVE}}</mat-card-title>
+                            <mat-card-title>8</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
@@ -38,7 +38,7 @@
                 <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
                     <mat-card class="mat-elevation-z8 urgent">
                         <mat-card-header class="urgent">
-                            <mat-card-title>{{admissionTypeCount[0].URGENT}}</mat-card-title>
+                            <mat-card-title>10</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>

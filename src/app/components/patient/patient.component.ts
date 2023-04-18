@@ -16,7 +16,6 @@ export class PatientComponent implements AfterViewInit {
   gridColumns = 3;
   allpatientData!:any;
   dataSource!:any;
-  admissionTypeCount!:any;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private patientService:PatientService) {}
 
@@ -29,12 +28,6 @@ export class PatientComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource(this.allpatientData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
-
-    this.patientService.getAdmissionTypeCount().subscribe((res)=>{
-      this.admissionTypeCount=res;
-      console.log(res);
-
     })
 
   }
