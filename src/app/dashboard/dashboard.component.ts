@@ -22,7 +22,7 @@ export class DashboardComponent {
   ngOnInit() {
     this.patientService.getTopTenPatientData().subscribe(res=>{
       this.topTenPatientData=res;
-      console.log(res);
+      // console.log(res);
     })
     this.createChart();   
   const chart = echarts.init(this.myPieChart.nativeElement);
@@ -34,7 +34,7 @@ export class DashboardComponent {
       // Set chart options
       const options: echarts.EChartsOption = {
         title: {
-          text: 'Patient Health Status',
+          text: 'Patients Health Status',
           left: 'center',
         },
         tooltip: {
@@ -46,7 +46,7 @@ export class DashboardComponent {
         },
         series: [
           {
-            name: 'Health Status',
+            name: 'Patient Status',
             type: 'pie',
             radius: '70%',
             data: [
@@ -95,31 +95,39 @@ export class DashboardComponent {
 
   createChart(){
   
-    this.chart = new Chart("MyChart", {
-      type: 'line',
-      data: {
-        labels: ['Urgent','High' , 'Medium' , 'Low'],
-        datasets: [{
-            label: 'Data',
-            data: [{ x: 10, y: 'Low' }, { x: 20, y: 'Low' }, { x: 30, y: 'High' }, { x: 40, y: 'Medium' } , { x: 50, y: 'Low' }, { x: 60, y: 'Urgent' }, { x: 70, y: 'High' }, { x: 80, y: 'Urgent' }],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-            x: {
-                type: 'linear',
-                position: 'bottom',
-            },
-            y: {
-                type: 'category',
-                // labels: ['Severe', 'High', 'Medium', 'Low']
-            }
-        }
-    }
-    });
+    this.patientService.getLineChartData().subscribe((res:any)=>{
+
+      // console.log(res);
+      this.chart = new Chart("MyChart", {
+        type: 'line',
+        data: {
+          labels: ['Urgent','High' , 'Medium' , 'Low'],
+          datasets: [{
+              label: 'Average Health Status',
+              data: res,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio:false,
+          scales: {
+              x: {
+                  type: 'category',
+                  labels: ['0-9','10-19','20-29','30-39','40-49','50-59','60-69','70-79','80-89','90-'],
+                  position: 'bottom',
+              },
+              y: {
+                  type: 'category',
+                  // labels: ['Severe', 'High', 'Medium', 'Low']
+              }
+          }
+      }
+      });
+
+    })
+    
   }
 }
