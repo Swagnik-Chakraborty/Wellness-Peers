@@ -29,6 +29,17 @@ def get_toptendata():
     temp = patientsData.query("Riskscore == 4.0").sample(10).to_json(orient ='records')
     return temp
 
+@app.route('/admitcount')
+def get_admitcount():
+    admissionsDF = pd.read_csv(r'assets\admissions.csv');
+    temp = admissionsDF.query("HADM_ID in @patientsData.HADM_ID").ADMISSION_TYPE.value_counts()
+    temp = [{
+        'EMERGENCY':str(temp['EMERGENCY']),
+        'ELECTIVE':str(temp['ELECTIVE']),
+        'URGENT':str(temp['URGENT'])
+    }]
+    return temp
+
 @app.route('/patientslist')
 def get_patientslist():
     temp = patientsData.to_json(orient ='records')
