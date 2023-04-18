@@ -87,7 +87,8 @@ def get_linedata():
             curr = {"90-":x}
         else:
             curr = {
-                ageGroup : x
+                'x':ageGroup ,
+                'y': x ,
             }
         ret.append(curr)
     return jsonify(ret)
