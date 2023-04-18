@@ -25,4 +25,8 @@ export class PatientService {
     return this.http.get<any>('http://127.0.0.1:5000/linechart');
   }
 
+  getAdmissionTypeCount():Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:5000/admitcount');
+  }
+
 }
