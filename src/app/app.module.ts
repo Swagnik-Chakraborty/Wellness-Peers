@@ -17,6 +17,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { PatientComponent } from './components/patient/patient.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SinglePatientDetailsComponent } from './components/single-patient-details/single-patient-details.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { GaugeChartModule } from "angular-gauge-chart";
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,14 +29,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PatientComponent,
     SidenavComponent,
-    SinglePatientDetailsComponent
+    SinglePatientDetailsComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +59,11 @@ import { MatSortModule } from '@angular/material/sort';
     FlexLayoutModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
-    // MatTableDataSource
+    MatSortModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
