@@ -1,6 +1,9 @@
 .sidenav{
     background : url("https://refrigerationcompressorparts.net/wp-content/uploads/2019/03/solution-sidebar-background1.jpg");
     position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 2;
 
     .icon-style{
         position: relative;
