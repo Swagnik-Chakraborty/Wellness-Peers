@@ -3,7 +3,11 @@
 
     <div style="padding: 20px 50px;background-color: #f6f6f6; position: absolute; left:22% ; width: 70%;">
         <mat-toolbar>
+<<<<<<< HEAD
             <h2>Patients</h2>
+=======
+        <h2>Patients</h2>
+>>>>>>> a46037391c344e57d12238a3e9d63e0851de1e07
             <button mat-button (click)="toggleGridColumns()" fxHide.lt-md>
                 <span *ngIf="gridColumns === 4">Three Columns</span>
                 <!-- <span *ngIf="gridColumns === 3">Four Columns</span> -->
@@ -11,7 +15,11 @@
         </mat-toolbar>
         <div class="content">
             <div fxLayout="row wrap" fxLayoutGap="16px grid">
+<<<<<<< HEAD
                 <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
+=======
+                <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" >
+>>>>>>> a46037391c344e57d12238a3e9d63e0851de1e07
                     <mat-card class="mat-elevation-z8 emergency">
                         <mat-card-header>
                             <mat-card-title>12</mat-card-title>
@@ -108,7 +116,11 @@
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> a46037391c344e57d12238a3e9d63e0851de1e07
             </table>
             <mat-paginator [pageSizeOptions]="[25,50,75,100]" showFirstLastButtons>
 
