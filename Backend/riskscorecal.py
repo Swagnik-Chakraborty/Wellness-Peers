@@ -16,7 +16,7 @@ def getPatientSample():
     admissionsNewbornfilter = admissionsDF.ADMISSION_TYPE != "NEWBORN"
     admissionsDF = admissionsDF[admissionsNewbornfilter]
 
-    #Creating a sample with 5000 patients 
+    #Creating a sample with 5000 patients
     patientsSample = patientsDF.query("SUBJECT_ID in @admissionsDF.SUBJECT_ID").sample(5000)
 
     patientsSample['EDscore'] = 0
@@ -41,7 +41,7 @@ def getPatientSample():
             if divmod(duration_in_s, 31536000)[0]<3 and x['ADMISSION_TYPE'].iloc[k] == "EMERGENCY":
                 patientsSample.loc[i,'EDscore']+=1
             k+=1
-    
+
     for i in patientsSample.index:
         curr = datetime.strptime(patientsSample['DOB'][i], '%Y-%m-%d %H:%M:%S')
         latest = datetime.strptime(patientsSample['ADMITTIME'][i], '%Y-%m-%d %H:%M:%S')
@@ -62,7 +62,7 @@ def getPatientSample():
         else:
             x = 1
         patientsSample.loc[i,'EDscore'] = x
-    
+
     CCicd9codes = getICD9codes()
     new_df = diagnosesDF[(diagnosesDF.ICD9_CODE.isin(map(str,CCicd9codes)))]
     temp = new_df.HADM_ID.value_counts()
