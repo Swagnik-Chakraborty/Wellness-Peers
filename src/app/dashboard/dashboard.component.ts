@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as echarts from 'echarts';
 import { PatientService } from '../services/patient.service';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { PatientService } from '../services/patient.service';
 export class DashboardComponent {
   @ViewChild('myPieChart', { static: true })
   myPieChart!: ElementRef;
+  
   public chart: any;
   pieChartData!: any;
   topTenPatientData!: any;
@@ -21,8 +23,9 @@ export class DashboardComponent {
     this.patientService.getTopTenPatientData().subscribe(res=>{
       this.topTenPatientData=res;
       console.log(res);
-
     })
+    this.createChart();   
+  const chart = echarts.init(this.myPieChart.nativeElement);
     this.patientService.getPieChartData().subscribe((res) => {
       // this.createChart();
 
@@ -84,6 +87,39 @@ export class DashboardComponent {
       // setTimeout(()=>{
       //   this.product = this.prods.wishProd;
       // },1000)
+  
+  // Set chart options and render  
+  })
+}
+
+
+  createChart(){
+  
+    this.chart = new Chart("MyChart", {
+      type: 'line',
+      data: {
+        labels: ['Urgent','High' , 'Medium' , 'Low'],
+        datasets: [{
+            label: 'Data',
+            data: [{ x: 10, y: 'Low' }, { x: 20, y: 'Low' }, { x: 30, y: 'High' }, { x: 40, y: 'Medium' } , { x: 50, y: 'Low' }, { x: 60, y: 'Urgent' }, { x: 70, y: 'High' }, { x: 80, y: 'Urgent' }],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+            x: {
+                type: 'linear',
+                position: 'bottom',
+            },
+            y: {
+                type: 'category',
+                // labels: ['Severe', 'High', 'Medium', 'Low']
+            }
+        }
+    }
     });
   }
 }
