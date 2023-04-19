@@ -19,7 +19,7 @@ export class PatientComponent implements AfterViewInit {
   dataSource!:any;
   admissionTypeCount!:any;
   currentCount = 3000;
-  currentCountElective=0;
+  currentCountElective=200;
   currentCountUrgent=0;
   
 
