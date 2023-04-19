@@ -12,7 +12,7 @@ import Chart from 'chart.js/auto';
 export class DashboardComponent {
   @ViewChild('myPieChart', { static: true })
   myPieChart!: ElementRef;
-  
+
   public chart: any;
   pieChartData!: any;
   topTenPatientData!: any;
@@ -24,7 +24,7 @@ export class DashboardComponent {
       this.topTenPatientData=res;
       // console.log(res);
     })
-    this.createChart();   
+    this.createChart();
   const chart = echarts.init(this.myPieChart.nativeElement);
     this.patientService.getPieChartData().subscribe((res) => {
       // this.createChart();
@@ -87,14 +87,14 @@ export class DashboardComponent {
       // setTimeout(()=>{
       //   this.product = this.prods.wishProd;
       // },1000)
-  
-  // Set chart options and render  
+
+  // Set chart options and render
   })
 }
 
 
   createChart(){
-  
+
     this.patientService.getLineChartData().subscribe((res:any)=>{
 
       // console.log(res);
@@ -128,7 +128,7 @@ export class DashboardComponent {
       });
 
     })
-    
+
   }
 
   patientList(){

@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as echarts from 'echarts';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-single-patient-details',
@@ -7,11 +9,20 @@ import * as echarts from 'echarts';
   styleUrls: ['./single-patient-details.component.scss']
 })
 export class SinglePatientDetailsComponent {
- 
+
   @ViewChild('gaugeChart', { static: true })
   gaugeChart!: ElementRef;
+  patientData!:any;
+  hadmId!:number;
+
+  constructor(private patientService:PatientService, private route:ActivatedRoute){}
 
   ngOnInit(){
+    this.hadmId = Number(this.route.snapshot.paramMap.get('hadmId'));
+    console.log(this.hadmId);
+
+    this.patientService.getParticularPatientData(this.hadmId).subscribe((res)=>{
+      this.patientData=res[0];
 
     // Gauge Chart  Start -------------------------------------
 
@@ -25,7 +36,7 @@ export class SinglePatientDetailsComponent {
           startAngle: 180,
           endAngle: 0,
           center: ['50%', '75%'],
-          radius: '90%',
+          radius: '100%',
           min: 0,
           max: 4,
           splitNumber: 3,
@@ -86,7 +97,7 @@ export class SinglePatientDetailsComponent {
             fontSize: 20
           },
           detail: {
-            fontSize: 30,
+            fontSize: 25,
             offsetCenter: [0, '-35%'],
             valueAnimation: true,
             formatter: function (value) {
@@ -96,19 +107,18 @@ export class SinglePatientDetailsComponent {
           },
           data: [
             {
-              value: 2.7,
+              value: res[0].Riskscore,
               name: 'Risk Score'
             }
           ]
         }
       ]
     };
-
-
     chart.setOption(options)
     // Gauge Chart End ----------------------------------
-
+  })
 
 
   }
+
 }

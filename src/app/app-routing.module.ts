@@ -7,8 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {path:'' , component:DashboardComponent},
   {path:'patients' , component:PatientComponent},
-  {path:'singlePatient',component:SinglePatientDetailsComponent}
-  
+  {path:'patient/:hadmId',component:SinglePatientDetailsComponent}
+
 ];
 
 @NgModule({
