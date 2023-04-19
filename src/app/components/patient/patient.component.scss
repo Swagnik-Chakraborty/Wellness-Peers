@@ -47,6 +47,14 @@ mat-toolbar {
 table {
     width: 100%;
 }
+mat-form-field {
+    width: 100%;
+    /* change this value to adjust the width */
+}
 
+.sroll-bar {
+    height: 500px;
+    overflow-y: auto;
+}
 
 
