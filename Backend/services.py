@@ -9,6 +9,21 @@ app = Flask(__name__)
 CORS(app,origins=['http://localhost:4200'])
 patientsData = getPatientSample()
 
+def get_average(data):
+    labels = [0,0,0,0,0,0,0,0,0,0]
+    count = [0,0,0,0,0,0,0,0,0,0]
+    ret = []
+    for i in data.index:
+        x = int(i/10)%10
+        labels[x]+=data[i]
+        count[x]+=1
+    for i in range(10):
+        if count[i] != 0:
+            x = labels[i]/count[i]
+        else:
+            x = 0
+        ret.append("{:.2f}".format(x))
+    return ret
 
 @app.route('/piedata')
 def get_piedata():
@@ -95,3 +110,19 @@ def get_linedata():
             }
         ret.append(curr)
     return jsonify(ret)
+
+@app.route('/bardata')
+def get_bardata():
+
+    data =  patientsData.groupby('AGE')
+    ccScore = data['CCscore'].mean()
+    edScore = data['EDscore'].mean()
+    riskScore = data['Riskscore'].mean()
+    data = [
+        {
+            'ccScore' : get_average(ccScore),
+            'edScore' :  get_average(edScore),
+            'riskScore' :  get_average(riskScore)
+        }
+    ]
+    return data

@@ -25,7 +25,10 @@ export class DashboardComponent {
       // console.log(res);
     });
     this.createChart();
-    this.createBarChart();
+    this.patientService.getBarChartData().subscribe((res)=>{
+      this.createBarChart(res[0]);
+    })
+
     const chart = echarts.init(this.myPieChart.nativeElement);
     this.patientService.getPieChartData().subscribe((res) => {
       // this.createChart();
@@ -140,7 +143,7 @@ export class DashboardComponent {
     });
   }
 
-  createBarChart() {
+  createBarChart(data:any) {
     this.chart = new Chart('MyBarChart', {
       type: 'bar', //this denotes tha type of chart
 
@@ -162,34 +165,34 @@ export class DashboardComponent {
 
         datasets: [
           {
-            label: 'Sales',
+            label: 'ccScore',
 
-            data: ['4', '3', '1', '2', '3', '4', '1', '3', '3', '1'],
+            data: data.ccScore,
 
-            backgroundColor: 'blue',
+            backgroundColor: 'Blue',
           },
 
           {
-            label: 'Profit',
+            label: 'edScore',
 
-            data: ['4', '1', '3', '3', '1', '4', '3', '1', '2', '3'],
+            data: data.edScore,
 
-            backgroundColor: 'limegreen',
+            backgroundColor: 'lightgreen',
           },
 
 
           {
-            label: 'Profit',
+            label: 'riskScore',
 
-            data: ['4', '1', '3', '3', '1', '4', '3', '1', '2', '3'],
+            data: data.riskScore,
 
-            backgroundColor: 'limegreen',
+            backgroundColor: 'red',
           }
         ],
       },
 
       options: {
-        aspectRatio: 1.5,
+        aspectRatio: 2,
       },
     });
   }
