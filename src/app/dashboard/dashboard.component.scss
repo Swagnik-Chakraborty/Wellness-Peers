@@ -39,7 +39,21 @@
 }
 
 .card-head{
-    height: 85px;
-    background-color: white;
-    padding: 20px;
+  height: 40px;
+  background-color: red;
+  border-top-right-radius: 27%;
+  display: flex;
+  margin-bottom: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
+
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+
