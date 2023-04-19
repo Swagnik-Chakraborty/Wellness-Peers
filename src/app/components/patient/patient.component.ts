@@ -18,15 +18,22 @@ export class PatientComponent implements AfterViewInit {
   allpatientData!:any;
   dataSource!:any;
   admissionTypeCount!:any;
+  currentCount = 3000;
+  currentCountElective=0;
+  currentCountUrgent=0;
+  
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private patientService:PatientService, private router:Router) {}
 
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator  | undefined;
-
+  
+   
+  
   ngOnInit() {
     this.patientService.getAdmissionTypeCount().subscribe((res)=>{
       this.admissionTypeCount=res;
+
     })
 
     this.patientService.getAllPatientData().subscribe((res)=>{
@@ -35,7 +42,22 @@ export class PatientComponent implements AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
-
+     setInterval(() => {
+      if (this.currentCount < this.admissionTypeCount[0].EMERGENCY) {
+      this.currentCount++;
+       }
+    }, 0);  
+    setInterval(() => {
+      if (this.currentCountElective< this.admissionTypeCount[0].ELECTIVE) {
+      this.currentCountElective++;
+       }
+    }, 0);  
+    
+    setInterval(() => {
+      if (this.currentCountUrgent< this.admissionTypeCount[0].URGENT) {
+      this.currentCountUrgent++;
+       }
+    }, 20); 
   }
 
   ngAfterViewInit() {

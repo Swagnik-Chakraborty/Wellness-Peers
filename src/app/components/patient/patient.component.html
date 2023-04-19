@@ -9,15 +9,15 @@
         </mat-toolbar>
         <div class="content">
             <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="admissionTypeCount">
-                <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
-                    <mat-card class="mat-elevation-z8 emergency">
+                <div class="animate" [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
+                    <mat-card class="mat-elevation-z8 emergency animate" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor"
                             class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
                             <path
                                 d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z" />
                         </svg>
                         <mat-card-header>
-                            <mat-card-title>{{admissionTypeCount[0].EMERGENCY}}</mat-card-title>
+                            <mat-card-title style="color:red"class="count"> {{currentCount}}</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
@@ -34,7 +34,7 @@
                                 d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5ZM1 14V4h14v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Zm7-6.507c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
                         </svg>
                         <mat-card-header>
-                            <mat-card-title>{{admissionTypeCount[0].ELECTIVE}}</mat-card-title>
+                            <mat-card-title style="color:green"class="count">{{currentCountElective}}</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
@@ -54,7 +54,7 @@
                         </svg>
                         <mat-card-header class="urgent">
 
-                            <mat-card-title>{{admissionTypeCount[0].URGENT}}</mat-card-title>
+                            <mat-card-title style="color:yellow"class="count">{{currentCountUrgent}}</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
@@ -65,6 +65,7 @@
                 </div>
             </div>
         </div>
+     
 
         <div style="padding: 10px ;">
             <h2>Patient Information</h2>
