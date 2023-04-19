@@ -84,10 +84,14 @@ def get_linedata():
             x ="Low"
         ageGroup = str(i*10)+"-"+str((i*10)+9)
         if i == 9:
-            curr = {"90-":x}
+            curr ={
+                    "x":"90-",
+                    "y":x
+                  }
         else:
             curr = {
-                ageGroup : x
+                "x": ageGroup,
+                "y": x
             }
         ret.append(curr)
     return jsonify(ret)

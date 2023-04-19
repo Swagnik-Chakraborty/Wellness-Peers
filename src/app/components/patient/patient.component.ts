@@ -5,6 +5,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { PatientService } from 'src/app/services/patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient',
@@ -18,7 +19,7 @@ export class PatientComponent implements AfterViewInit {
   dataSource!:any;
   admissionTypeCount!:any;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private patientService:PatientService) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer, private patientService:PatientService, private router:Router) {}
 
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator  | undefined;
@@ -45,7 +46,9 @@ export class PatientComponent implements AfterViewInit {
     this.gridColumns = this.gridColumns === 3 ? 4 : 3;
   }
   onButtonClick(rowData: any) {
-    // Do something with the row data
+    console.log(rowData);
+
+    this.router.navigateByUrl('/patient/'+rowData.hadmID)
   }
 
   /** Announce the change in sort state for assistive technology. */
