@@ -47,6 +47,10 @@ export class PatientComponent implements AfterViewInit {
   onButtonClick(rowData: any) {
     // Do something with the row data
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
