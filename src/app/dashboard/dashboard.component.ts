@@ -20,12 +20,13 @@ export class DashboardComponent {
 
   constructor(private router: Router, private patientService: PatientService) {}
   ngOnInit() {
-    this.patientService.getTopTenPatientData().subscribe(res=>{
-      this.topTenPatientData=res;
+    this.patientService.getTopTenPatientData().subscribe((res) => {
+      this.topTenPatientData = res;
       // console.log(res);
-    })
+    });
     this.createChart();
-  const chart = echarts.init(this.myPieChart.nativeElement);
+    this.createBarChart();
+    const chart = echarts.init(this.myPieChart.nativeElement);
     this.patientService.getPieChartData().subscribe((res) => {
       // this.createChart();
 
@@ -88,50 +89,112 @@ export class DashboardComponent {
       //   this.product = this.prods.wishProd;
       // },1000)
 
-  // Set chart options and render
-  })
-}
+      // Set chart options and render
+    });
+  }
 
-
-  createChart(){
-
-    this.patientService.getLineChartData().subscribe((res:any)=>{
-
+  createChart() {
+    this.patientService.getLineChartData().subscribe((res: any) => {
       // console.log(res);
-      this.chart = new Chart("MyChart", {
+      this.chart = new Chart('MyChart', {
         type: 'line',
         data: {
-          labels: ['Urgent','High' , 'Medium' , 'Low'],
-          datasets: [{
+          labels: ['Urgent', 'High', 'Medium', 'Low'],
+          datasets: [
+            {
               label: 'Average Health Status',
               data: res,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1
-          }]
+              tension: 0.1,
+            },
+          ],
         },
         options: {
           responsive: true,
-          maintainAspectRatio:false,
+          maintainAspectRatio: false,
           scales: {
-              x: {
-                  type: 'category',
-                  labels: ['0-9','10-19','20-29','30-39','40-49','50-59','60-69','70-79','80-89','90-'],
-                  position: 'bottom',
-              },
-              y: {
-                  type: 'category',
-                  // labels: ['Severe', 'High', 'Medium', 'Low']
-              }
-          }
-      }
+            x: {
+              type: 'category',
+              labels: [
+                '0-9',
+                '10-19',
+                '20-29',
+                '30-39',
+                '40-49',
+                '50-59',
+                '60-69',
+                '70-79',
+                '80-89',
+                '90-',
+              ],
+              position: 'bottom',
+            },
+            y: {
+              type: 'category',
+              // labels: ['Severe', 'High', 'Medium', 'Low']
+            },
+          },
+        },
       });
-
-    })
-
+    });
   }
 
-  patientList(){
+  createBarChart() {
+    this.chart = new Chart('MyBarChart', {
+      type: 'bar', //this denotes tha type of chart
+
+      data: {
+        // values on X-Axis
+
+        labels: [
+          '0-9',
+          '10-19',
+          '20-29',
+          '30-39',
+          '40-49',
+          '50-59',
+          '60-69',
+          '70-79',
+          '80-89',
+          '90-',
+        ],
+
+        datasets: [
+          {
+            label: 'Sales',
+
+            data: ['4', '3', '1', '2', '3', '4', '1', '3', '3', '1'],
+
+            backgroundColor: 'blue',
+          },
+
+          {
+            label: 'Profit',
+
+            data: ['4', '1', '3', '3', '1', '4', '3', '1', '2', '3'],
+
+            backgroundColor: 'limegreen',
+          },
+
+
+          {
+            label: 'Profit',
+
+            data: ['4', '1', '3', '3', '1', '4', '3', '1', '2', '3'],
+
+            backgroundColor: 'limegreen',
+          }
+        ],
+      },
+
+      options: {
+        aspectRatio: 1.5,
+      },
+    });
+  }
+
+  patientList() {
     this.router.navigateByUrl('/patients');
   }
 }
