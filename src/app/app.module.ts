@@ -30,6 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DashyComponent } from './dashy/dashy.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MatInputModule } from '@angular/material/input';
     SidenavComponent,
     SinglePatientDetailsComponent,
     LoginPageComponent,
+    DashyComponent,
   ],
   imports: [
     BrowserModule,
