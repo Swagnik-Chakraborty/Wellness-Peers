@@ -6,17 +6,42 @@
         LOGIN PAGE
       </h4>
       <input
-        type="email"
+        #Email="ngModel"
+        type="text"
         [(ngModel)]="email"
         placeholder="Email"
         [ngModelOptions]="{ standalone: true }"
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
       />
+      <div
+        *ngIf="Email.invalid && (Email.dirty || Email.touched)"
+        class="alert"
+      >
+        <span *ngIf="Email.errors!['required']" style="color: red">
+          Email is required
+        </span>
+        <span *ngIf="Email.errors!['pattern']" style="color: red">
+          Please Enter Valid Email
+        </span>
+      </div>
       <input
-        type="password"
+        #Password="ngModel"
+        type="text"
         [(ngModel)]="password"
         placeholder="Password"
         [ngModelOptions]="{ standalone: true }"
+        required
+        minlength="8"
       />
+      <div
+        *ngIf="Password.invalid && (Password.dirty || Password.touched)"
+        class="alert"
+      >
+        <span *ngIf="Password.errors!['required']" style="color: red">
+          Password is required
+        </span>
+      </div>
       <a href="#">Forgot your password?</a>
       <button (click)="onSubmit()">Sign In</button>
     </form>
