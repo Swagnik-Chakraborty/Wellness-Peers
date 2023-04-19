@@ -19,41 +19,43 @@
             <li class="dashboard-item">
                 <h3 class="item-style" > <mat-icon class="icon-style">logout</mat-icon>&nbsp; Logout</h3>
             </li>
-                   
+
         </div>
-        
+
     </section>
 </div> -->
 
 
 <div class="nav-all" style="display: flex;justify-content: space-between;box-shadow: 0px 4px 13px #dedcdc;">
-  
-    <div>
-        <!-- <img src="../assets/Wellness_peers.png" style="height: 50px;width: 50px;"> -->
+
+    <div class="logo">
+      <!-- <span class="material-symbols-outlined">
+        ecg_heart
+      </span> -->
     </div>
 
     <div id="down-nav">
-  
-        <li class="dropdown">
+
+        <li class="dropdown" (click)="navigateDashboard()">
             <span class="drop-text" type="button" >
               Dashboard
             </span>
         </li>
 
-  
-        <li class="dropdown">
-            <span class="drop-text" type="button" >
+
+        <li class="dropdown" (click)="navigatePatients()">
+            <span class="drop-text" type="button">
                 Patients
             </span>
         </li>
-  
-  
+
+
         <li class="dropdown">
             <span class="drop-text" type="button" >
                 About Us
             </span>
         </li>
-  
+
     <a class="btn btn-primary btn-transition">Logout</a>
 
     </div>
