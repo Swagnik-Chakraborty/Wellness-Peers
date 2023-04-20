@@ -69,7 +69,34 @@
             </span>
         </li>
 
-    <a class="btn btn-primary btn-transition">Logout</a>
+        <li *ngIf="!loginFlag" class="dropdown" (click)="navigateLogin()">
+          <span class="drop-text" type="button">
+              Sign In
+          </span>
+        </li>
+
+        <!-- <li class="dropdown" *ngIf="loginFlag">
+          <span class="drop-text dropdown-toggle" type="button">
+            Hello, Admin
+          </span>
+          <div class="dropdown-menu" >
+            <a class="dropdown-item" style="cursor: pointer;" (click)="onLogoutClick()">Logout</a>
+          </div>
+        </li> -->
+        <li class="dropdown" *ngIf="loginFlag">
+          <span class="dropdown-toggle" type="button" id="dropdownLandingHover" data-bs-toggle="dropdown" aria-expanded="false" >
+            Hello, Admin
+          </span>
+          <div class="dropdown-menu" aria-labelledby="dropdownLandingHover">
+          <li>
+            <a class="dropdown-item d-flex" style="cursor: pointer;" (click)="onLogoutClick()">
+              Logout
+            </a>
+          </li>
+          </div>
+        </li>
+
+    <!-- <a class="btn btn-primary btn-transition">Logout</a> -->
 
     </div>
   </div>

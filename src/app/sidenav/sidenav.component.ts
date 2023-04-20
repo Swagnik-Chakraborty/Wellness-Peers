@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,10 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
+  loginFlag!:any;
+  constructor(private router:Router, private patientService:PatientService){
 
-  constructor(private router:Router){}
+  }
+  ngOnInit() {
+    if(sessionStorage.hasOwnProperty('isUserLoggedIn')){
+      console.log(sessionStorage.getItem('isUserLoggedIn'));
+
+      this.loginFlag=sessionStorage.getItem('isUserLoggedIn');
+    }
+
+    this.patientService.isUserLoggedIn.subscribe(res=>{
+      this.loginFlag=res;
+    })
+  }
+
   navigateDashboard(){
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/dashboard');
   }
 
   navigatePatients(){
@@ -19,5 +34,15 @@ export class SidenavComponent {
   navigateToSinglePatientPage()
   {
     this.router.navigateByUrl('/singlePatient');
+  }
+
+  navigateLogin(){
+    this.router.navigateByUrl('/login');
+  }
+
+  onLogoutClick(){
+    this.patientService.isUserLoggedIn.next(false);
+    sessionStorage.setItem('isUserLoggedIn','false');
+    this.router.navigateByUrl('/');
   }
 }
