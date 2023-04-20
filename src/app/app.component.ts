@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'health_risk_status';
+  ngOnInit() {
+    if(!sessionStorage.hasOwnProperty('isUserLoggedIn')){
+      console.log("has property");
+      sessionStorage.setItem('isUserLoggedIn','false');
+    }
+  }
 }
