@@ -11,7 +11,7 @@
     <div class="content" style="display: flex;justify-content: center;margin-top: -6rem!important;">
         <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="admissionTypeCount" style="width: 73%;">
             <div class="animate" [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
-                <mat-card class="mat-elevation-z8 emergency animate box" >
+                <mat-card class="mat-elevation-z8 emergency animate" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor"
                         class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
                         <path
@@ -28,7 +28,7 @@
                 </mat-card>
             </div>
             <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%">
-                <mat-card class="mat-elevation-z8 elective box">
+                <mat-card class="mat-elevation-z8 elective">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor"
                         class="bi bi-calendar-heart" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -45,7 +45,7 @@
                 </mat-card>
             </div>
             <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
-                <mat-card class="mat-elevation-z8 urgent box">
+                <mat-card class="mat-elevation-z8 urgent">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor"
                         class="bi bi-heart-pulse" viewBox="0 0 16 16">
                         <path
