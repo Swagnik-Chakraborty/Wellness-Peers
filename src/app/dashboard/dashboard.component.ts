@@ -38,7 +38,7 @@ export class DashboardComponent {
       // Set chart options
       const options: echarts.EChartsOption = {
         title: {
-          text: 'Patients Health Status',
+          text: 'Patients Health Risk',
           left: 'center',
         },
         tooltip: {
@@ -50,7 +50,7 @@ export class DashboardComponent {
         },
         series: [
           {
-            name: 'Patient Status',
+            name: 'Patient Reports',
             type: 'pie',
             radius: '70%',
             data: [
@@ -99,8 +99,11 @@ export class DashboardComponent {
   createChart() {
     this.patientService.getLineChartData().subscribe((res: any) => {
       // console.log(res);
+      
       this.chart = new Chart('MyChart', {
+        
         type: 'line',
+      
         data: {
           labels: ['Urgent', 'High', 'Medium', 'Low'],
           datasets: [
@@ -144,7 +147,9 @@ export class DashboardComponent {
   }
 
   createBarChart(data:any) {
+    
     this.chart = new Chart('MyBarChart', {
+      
       type: 'bar', //this denotes tha type of chart
 
       data: {
@@ -165,7 +170,7 @@ export class DashboardComponent {
 
         datasets: [
           {
-            label: 'ccScore',
+            label: 'CC_Score',
 
             data: data.ccScore,
 
@@ -173,7 +178,7 @@ export class DashboardComponent {
           },
 
           {
-            label: 'edScore',
+            label: 'ED_Score',
 
             data: data.edScore,
 
@@ -182,7 +187,7 @@ export class DashboardComponent {
 
 
           {
-            label: 'riskScore',
+            label: 'RISK_Score',
 
             data: data.riskScore,
 
