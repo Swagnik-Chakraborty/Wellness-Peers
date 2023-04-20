@@ -49,6 +49,12 @@
 
     <div id="down-nav">
 
+      <li class="dropdown" (click)="navigateHome()">
+        <span class="drop-text" type="button" >
+            Home
+        </span>
+      </li>
+
         <li class="dropdown" (click)="navigateDashboard()">
             <span class="drop-text" type="button" >
               Dashboard
@@ -59,13 +65,6 @@
         <li class="dropdown" (click)="navigatePatients()">
             <span class="drop-text" type="button">
                 Patients
-            </span>
-        </li>
-
-
-        <li class="dropdown">
-            <span class="drop-text" type="button" >
-                About Us
             </span>
         </li>
 
