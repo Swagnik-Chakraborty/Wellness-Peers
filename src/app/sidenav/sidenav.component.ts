@@ -40,6 +40,10 @@ export class SidenavComponent {
     this.router.navigateByUrl('/login');
   }
 
+  navigateHome(){
+    this.router.navigateByUrl('/');
+  }
+
   onLogoutClick(){
     this.patientService.isUserLoggedIn.next(false);
     sessionStorage.setItem('isUserLoggedIn','false');
