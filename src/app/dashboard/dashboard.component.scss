@@ -40,7 +40,7 @@
 
 .card-head{
   height: 40px;
-  background-color: red;
+  background-color: white;
   border-top-right-radius: 27%;
   display: flex;
   margin-bottom: 10px;
@@ -54,17 +54,60 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 20px;
+  margin-top: -6rem;
+  background-color: white;
+  border-radius: 24px;
+  padding: 0px 10px;
 }
 
 
 .box {
-
     animation: fadeIn 1.5s ease-in-out forwards;
     opacity: 0;
 }
 
+.bg-cont{
 
-    
+  height: 230px;
+  z-index: 200;
+
+  .inside-cont{
+
+  height: 100%;
+
+  margin: 0px 61px;
+
+  padding: 48px 12px;
+
+  }
+
+  .col{
+
+   display: flex;
+
+  justify-content: space-between;
+
+  }
+
+   .btn{
+
+  color: #f7faff;
+
+  background-color: rgba(247,250,255,.1);
+
+  height: 41px;
+}
+
+.btn:hover{
+
+  background-color: white;
+
+   color:black;
+
+   }
+
+  }
+
 @keyframes fadeIn {
     from {
      opacity: 0;
@@ -73,3 +116,4 @@
 opacity: 1;
      }
     }
+
