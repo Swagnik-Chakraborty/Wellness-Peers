@@ -4,10 +4,31 @@ import pandas as pd;
 from riskscorecal import getPatientSample;
 from patientDetails import setPatientDetails;
 from flask_cors import CORS;
+import predictiveModels as pm;
+
 
 app = Flask(__name__)
 CORS(app,origins=['http://localhost:4200'])
-patientsData = getPatientSample()
+
+def sharepatientsData():
+    patientsData = getPatientSample()
+    return patientsData
+
+patientsData = sharepatientsData()
+
+@app.route('/piedata')
+def get_piedata():
+
+    temp = patientsData.Riskgroup.value_counts()
+    data = [
+        {
+            'Urgent' : str(temp['Urgent']),
+            'High' : str(temp['High']),
+            'Medium' : str(temp['Medium']),
+            'Low' : str(temp['Low']),
+        }
+    ]
+    return jsonify(data)
 
 def get_average(data):
     labels = [0,0,0,0,0,0,0,0,0,0]
@@ -24,52 +45,6 @@ def get_average(data):
             x = 0
         ret.append("{:.2f}".format(x))
     return ret
-
-@app.route('/piedata')
-def get_piedata():
-
-    temp = patientsData.Riskgroup.value_counts()
-    data = [
-        {
-            'Urgent' : str(temp['Urgent']),
-            'High' : str(temp['High']),
-            'Medium' : str(temp['Medium']),
-            'Low' : str(temp['Low']),
-        }
-    ]
-    return jsonify(data)
-
-@app.route('/topten')
-def get_toptendata():
-    temp = patientsData.query("Riskscore == 4.0").sample(10).to_json(orient ='records')
-    return temp
-
-@app.route('/admitcount')
-def get_admitcount():
-    admissionsDF = pd.read_csv(r'assets\admissions.csv');
-    temp = admissionsDF.query("HADM_ID in @patientsData.HADM_ID").ADMISSION_TYPE.value_counts()
-    temp = [{
-        'EMERGENCY':str(temp['EMERGENCY']),
-        'ELECTIVE':str(temp['ELECTIVE']),
-        'URGENT':str(temp['URGENT'])
-    }]
-    return temp
-
-@app.route('/patientslist')
-def get_patientslist():
-    temp = patientsData.to_json(orient ='records')
-    return temp
-
-@app.route('/patientDetails/<hadmID>')
-def get_patientDetails(hadmID):
-
-    temp = setPatientDetails(hadmID)
-    temp['AGE'] = patientsData.AGE[patientsData.HADM_ID==int(hadmID)].to_string(index=False)
-    temp['Riskscore']= patientsData.Riskscore[patientsData.HADM_ID==int(hadmID)].to_string(index=False)
-    temp['EDscore']= patientsData.EDscore[patientsData.HADM_ID==int(hadmID)].to_string(index=False)
-    temp['CCscore']= patientsData.CCscore[patientsData.HADM_ID==int(hadmID)].to_string(index=False)
-
-    return jsonify([temp])
 
 @app.route('/linechart')
 def get_linedata():
@@ -99,14 +74,10 @@ def get_linedata():
             x ="Low"
         ageGroup = str(i*10)+"-"+str((i*10)+9)
         if i == 9:
-            curr ={
-                    "x":"90-",
-                    "y":x
-                  }
+            curr = {"90-":x}
         else:
             curr = {
-                "x": ageGroup,
-                "y": x
+                ageGroup : x
             }
         ret.append(curr)
     return jsonify(ret)
@@ -126,3 +97,45 @@ def get_bardata():
         }
     ]
     return data
+
+@app.route('/topten')
+def get_toptendata():
+    temp = patientsData.query("Riskscore == 4.0").sample(10)
+    temp['expectedStay'] = 0
+    temp['survivalRate'] = 0
+    for i in temp.index:
+        hadmID = int(temp.HADM_ID[temp.index == i].to_string(index=False))
+        temp.loc[i,'expectedStay'] =  str(int(pm.getexpModel(hadmID)))
+        temp.loc[i,'survivalRate'] =   str(100 - int(pm.getmorModel(hadmID)*100))
+    temp = temp.to_json(orient ='records')
+    return temp
+
+@app.route('/admitcount')
+def get_admitcount():
+  admissionsDF = pd.read_csv(r'assets\admissions.csv');
+  temp = admissionsDF.query("HADM_ID in @patientsData.HADM_ID").ADMISSION_TYPE.value_counts()
+  temp = [{
+    'EMERGENCY':str(temp['EMERGENCY']),
+    'ELECTIVE':str(temp['ELECTIVE']),
+    'URGENT':str(temp['URGENT'])
+  }]
+  return temp
+
+@app.route('/patientslist')
+def get_patientslist():
+    temp = patientsData.to_json(orient ='records')
+    return temp
+
+@app.route('/patientDetails/<hadmID>')
+def get_patientDetails(hadmID):
+
+    temp = setPatientDetails(hadmID)
+    hadmID = int(hadmID)
+    temp['AGE'] = patientsData.AGE[patientsData.HADM_ID==hadmID].to_string(index=False)
+    temp['Riskscore']= patientsData.Riskscore[patientsData.HADM_ID==hadmID].to_string(index=False)
+    temp['EDscore']= patientsData.EDscore[patientsData.HADM_ID==hadmID].to_string(index=False)
+    temp['CCscore']= patientsData.CCscore[patientsData.HADM_ID==hadmID].to_string(index=False)
+    temp['expectedStay'] = str(int(pm.getexpModel(hadmID)))
+    temp['survivalRate'] = str(100 - int(pm.getmorModel(hadmID)*100))
+
+    return jsonify([temp])
