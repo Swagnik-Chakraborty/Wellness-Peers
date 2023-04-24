@@ -13,12 +13,6 @@ export class SidenavComponent {
 
   }
   ngOnInit() {
-    if(sessionStorage.hasOwnProperty('isUserLoggedIn')){
-      console.log(sessionStorage.getItem('isUserLoggedIn'));
-
-      this.loginFlag=sessionStorage.getItem('isUserLoggedIn');
-    }
-
     this.patientService.isUserLoggedIn.subscribe(res=>{
       this.loginFlag=res;
     })
